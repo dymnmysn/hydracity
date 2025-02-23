@@ -1,0 +1,80 @@
+2024-12-07 17:03:12: SOM total power
+ :     5120 mW
+2024-12-07 17:03:14: SOM total power
+ :     5450 mW
+2024-12-07 17:03:17: SOM total power
+ :     5430 mW
+2024-12-07 17:03:19: SOM total power
+ :     5110 mW
+2024-12-07 17:03:21: SOM total power
+ :     5110 mW
+2024-12-07 17:03:24: SOM total power
+ :     5110 mW
+2024-12-07 17:03:26: SOM total power
+ :     5120 mW
+2024-12-07 17:03:28: SOM total power
+ :     5140 mW
+2024-12-07 17:03:31: SOM total power
+ :     9100 mW
+2024-12-07 17:03:33: SOM total power
+ :     10130 mW
+2024-12-07 17:03:36: SOM total power
+ :     9670 mW
+2024-12-07 17:03:38: SOM total power
+ :     7410 mW
+2024-12-07 17:03:40: SOM total power
+ :     8890 mW
+2024-12-07 17:03:43: SOM total power
+ :     10510 mW
+2024-12-07 17:03:45: SOM total power
+ :     9610 mW
+2024-12-07 17:03:48: SOM total power
+ :     9640 mW
+2024-12-07 17:03:50: SOM total power
+ :     7600 mW
+2024-12-07 17:03:52: SOM total power
+ :     9340 mW
+2024-12-07 17:03:55: SOM total power
+ :     10460 mW
+2024-12-07 17:03:57: SOM total power
+ :     8890 mW
+2024-12-07 17:03:59: SOM total power
+ :     9690 mW
+2024-12-07 17:04:02: SOM total power
+ :     9190 mW
+2024-12-07 17:04:04: SOM total power
+ :     8970 mW
+2024-12-07 17:04:07: SOM total power
+ :     7790 mW
+2024-12-07 17:04:09: SOM total power
+ :     9650 mW
+2024-12-07 17:04:11: SOM total power
+ :     9700 mW
+2024-12-07 17:04:14: SOM total power
+ :     8900 mW
+2024-12-07 17:04:16: SOM total power
+ :     8500 mW
+2024-12-07 17:04:19: SOM total power
+ :     7790 mW
+2024-12-07 17:04:21: SOM total power
+ :     8950 mW
+2024-12-07 17:04:23: SOM total power
+ :     8820 mW
+2024-12-07 17:04:26: SOM total power
+ :     8530 mW
+2024-12-07 17:04:28: SOM total power
+ :     8530 mW
+2024-12-07 17:04:31: SOM total power
+ :     7880 mW
+2024-12-07 17:04:33: SOM total power
+ :     5160 mW
+2024-12-07 17:04:35: SOM total power
+ :     5150 mW
+2024-12-07 17:04:38: SOM total power
+ :     5160 mW
+2024-12-07 17:04:40: SOM total power
+ :     5170 mW
+2024-12-07 17:04:42: SOM total power
+ :     5150 mW
+2024-12-07 17:04:45: SOM total power
+ :     5150 mW

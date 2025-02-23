@@ -1,0 +1,168 @@
+# Load data
+index = 200
+sx = 1.43
+sz = 2.184
+sy = 0
+s = np.array([sx,sy,sz])
+waymo_points_all = np.load(wifiles[index])['array'].astype(np.float32)
+waymo_points = waymo_points_all[1:4,...]
+waymo_points[2:4] = -1*waymo_points[2:4] 
+waymo_points[0] = waymo_points[0]-sx
+waymo_points[2] = waymo_points[2]+sz
+waymo_points = np.transpose(waymo_points,(1,2,0)).reshape(-1,3)
+waymo_labels = np.load(wlfiles[index])['array'].reshape(-1)
+waymo_points = waymo_points[(waymo_labels == 1) | (waymo_labels == 18)| (waymo_labels == 0)]
+waymo_labels = waymo_labels[(waymo_labels == 1) | (waymo_labels == 18)| (waymo_labels == 0)]
+waymo_colors = colorize_point_cloud(waymo_points, waymo_labels, color_map)
+
+Inclinations Waymo
+-0.314831	0.039103
+
+Delays: Fetch, Preprocess, Infer, Postprocess
+(0.003230873743693034, 0.015941993395487467, 0.175438, 0.012991023063659669)
+
+Kitti Height
+-1.75 road avg
+
+HydraKitti Model Results on Kitti
+(tensor(0.5692, dtype=torch.float64),
+ tensor([0.0000e+00, 9.4876e-01, 4.3141e-01, 5.2506e-01, 6.1661e-01, 4.7892e-01,
+         6.2197e-01, 7.4806e-01, 8.8904e-04, 9.0781e-01, 3.4351e-01, 7.4264e-01,
+         9.3949e-03, 8.3386e-01, 4.5630e-01, 8.3309e-01, 6.0189e-01, 6.7614e-01,
+         5.9391e-01, 4.4516e-01], dtype=torch.float64))
+
+tensor(0.8831, dtype=torch.float64)
+
+QHydraKitti on Kitti
+(tensor(0.5431, dtype=torch.float64),
+ tensor([0.0000, 0.9057, 0.4242, 0.5253, 0.4090, 0.3838, 0.6265, 0.8070, 0.0000,
+         0.9181, 0.4134, 0.7698, 0.0040, 0.8193, 0.3124, 0.8087, 0.5992, 0.7122,
+         0.5746, 0.3049], dtype=torch.float64))
+tensor(0.8782, dtype=torch.float64)
+
+HydraKitti Model Results on Kitti without ignoring 0 class
+(tensor(0.5293, dtype=torch.float64),
+ tensor([8.8353e-01, 8.3617e-01, 3.6579e-01, 4.3339e-01, 5.7939e-01, 4.0964e-01,
+         5.1094e-01, 6.1821e-01, 8.8766e-04, 9.0379e-01, 3.4121e-01, 7.3826e-01,
+         8.9583e-03, 7.9026e-01, 3.4829e-01, 7.9267e-01, 5.4582e-01, 6.6572e-01,
+         4.9317e-01, 3.1984e-01], dtype=torch.float64))
+tensor(0.8832, dtype=torch.float64)
+
+HydraKitti Model Results on DPU3136
+((tensor(0.5428, dtype=torch.float64),
+  tensor([0.0000, 0.9061, 0.4235, 0.5231, 0.4105, 0.3842, 0.6253, 0.8048, 0.0000,
+          0.9181, 0.4158, 0.7697, 0.0046, 0.8188, 0.3111, 0.8076, 0.5986, 0.7108,
+          0.5752, 0.3052], dtype=torch.float64)),
+ tensor(0.8778, dtype=torch.float64))
+
+##################################################################################
+
+"""
+Not remembering
+(tensor(0.4763, device='cuda:0', dtype=torch.float64), tensor([0.0000, 0.9677, 0.2392, 0.0000, 0.0000, 0.1302, 0.5380, 0.8886, 0.0000,
+        0.9606, 0.0550, 0.8671, 0.0000, 0.8817, 0.3250, 0.6893, 0.7438, 0.7732,
+        0.4946, 0.4949], device='cuda:0', dtype=torch.float64))
+#########################
+Hydra on Kitti
+        ###################KITTI_RESULTS########################
+Kitti Validation mIoU: 0.6079
+Kitti Validation Acc.: 0.9071
+(tensor(0.6079, device='cuda:0', dtype=torch.float64), tensor([0.0000, 0.9484, 0.4270, 0.5591, 0.7367, 0.4537, 0.6926, 0.8104, 0.0016,
+        0.9413, 0.4491, 0.8117, 0.0235, 0.8572, 0.5139, 0.8539, 0.6476, 0.7409,
+        0.5844, 0.4974], device='cuda:0', dtype=torch.float64))
+########################################################
+
+###################KITTI_RESULTS########################
+SalsaNext Original Model results with batch size of 1.
+Mean IoU:  (tensor(0.6101, device='cuda:0', dtype=torch.float64), tensor([0.0000, 0.9476, 0.4832, 0.4635, 0.7911, 0.4414, 0.7319, 0.8285, 0.0000,
+        0.9494, 0.4297, 0.8183, 0.0475, 0.8704, 0.5370, 0.8338, 0.6700, 0.6714,
+        0.6015, 0.4753], device='cuda:0', dtype=torch.float64))
+Accuracy:  tensor(0.9014, device='cuda:0', dtype=torch.float64)
+#########################################################
+
+Salsa on Kitti
+###################KITTI_RESULTS########################
+Kitti Validation mIoU: 0.6097
+Kitti Validation Acc.: 0.9048
+(tensor(0.6097, device='cuda:0', dtype=torch.float64), tensor([0.0000, 0.9426, 0.3947, 0.5126, 0.7527, 0.4703, 0.7135, 0.7964, 0.0000,
+        0.9420, 0.4501, 0.8132, 0.0884, 0.8692, 0.5479, 0.8429, 0.6570, 0.7143,
+        0.5796, 0.4973], device='cuda:0', dtype=torch.float64))
+########################################################
+"""
+
+"""249it [02:40,  1.55it/s] With domain change on Hydra safe
+###################WAYMO_RESULTS########################
+Waymo Validation mIoU: 0.1495
+Waymo Validation Acc.: 0.4754
+(tensor(0.1495, device='cuda:0', dtype=torch.float64), tensor([0.0000, 0.6693, 0.0349, 0.0281, 0.0934, 0.0501, 0.3090, 0.0120, 0.0000,
+        0.1666, 0.0000, 0.3775, 0.0000, 0.4331, 0.0000, 0.2864, 0.3796, 0.0000,
+        0.0000, 0.0000], device='cuda:0', dtype=torch.float64))
+########################################################"""
+
+"""0it [00:00, ?it/s] With Domain Change on Hydra free
+249it [02:02,  2.03it/s]
+###################WAYMO_RESULTS########################
+Waymo Validation mIoU: 0.1533
+Waymo Validation Acc.: 0.3163
+(tensor(0.1533, device='cuda:0', dtype=torch.float64), tensor([0.0000, 0.4823, 0.0262, 0.0067, 0.0288, 0.0316, 0.2094, 0.0115, 0.0000,
+        0.1074, 0.0000, 0.1929, 0.1828, 0.3644, 0.0000, 0.2412, 0.3498, 0.0000,
+        0.3942, 0.2836], device='cuda:0', dtype=torch.float64))
+########################################################"""
+
+""" With domain change on Hydra mid
+249it [02:16,  1.83it/s]
+###################WAYMO_RESULTS########################
+Waymo Validation mIoU: 0.1840
+Waymo Validation Acc.: 0.4387
+(tensor(0.1840, device='cuda:0', dtype=torch.float64), tensor([0.0000, 0.6642, 0.0331, 0.0274, 0.0844, 0.0485, 0.2963, 0.0118, 0.0000,
+        0.1038, 0.0000, 0.2707, 0.2063, 0.4261, 0.0000, 0.2813, 0.3552, 0.0000,
+        0.4007, 0.2856], device='cuda:0', dtype=torch.float64))
+########################################################
+"""
+""" With domain change on Salsa
+249it [02:31,  1.64it/s]
+###################WAYMO_RESULTS########################
+Waymo Validation mIoU: 0.1198
+Waymo Validation Acc.: 0.3778
+(tensor(0.1198, device='cuda:0', dtype=torch.float64), tensor([0.0000, 0.5377, 0.0021, 0.0006, 0.0276, 0.0387, 0.1124, 0.0157, 0.0000,
+        0.0595, 0.0000, 0.1439, 0.0366, 0.5253, 0.0000, 0.1222, 0.1837, 0.0000,
+        0.2857, 0.1856], device='cuda:0', dtype=torch.float64))
+########################################################
+"""
+
+"""Without domain change on Salsa
+###################WAYMO_RESULTS########################
+Waymo Validation mIoU: 0.0786
+Waymo Validation Acc.: 0.2923
+(tensor(0.0786, device='cuda:0', dtype=torch.float64), tensor([0.0000, 0.2608, 0.0198, 0.0019, 0.0539, 0.0131, 0.0672, 0.0831, 0.0000,
+        0.0215, 0.0000, 0.0663, 0.0602, 0.3314, 0.0000, 0.1294, 0.0623, 0.0000,
+        0.1780, 0.1448], device='cuda:0', dtype=torch.float64))
+########################################################
+"""
+
+"""Original SalsaNext with domain change on Waymo
+###################WAYMO_RESULTS########################
+Mean IoU:  (tensor(0.1154, device='cuda:0', dtype=torch.float64), tensor([0.0000e+00, 5.7786e-01, 5.1215e-04, 0.0000e+00, 2.8800e-02, 3.8017e-02,
+        7.5858e-02, 5.4813e-02, 0.0000e+00, 6.5099e-02, 0.0000e+00, 1.5552e-01,
+        3.9179e-02, 6.1373e-01, 0.0000e+00, 8.6681e-02, 1.1332e-01, 0.0000e+00,
+        1.8433e-01, 1.5824e-01], device='cuda:0', dtype=torch.float64))
+Accuracy:  tensor(0.4167, device='cuda:0', dtype=torch.float64)
+########################################################
+"""
+
+#SemKitti 4060 en iyisi
+#Waymok 2840 en iyisi
+
+
+CityScapes RGBD Labels Freqs: 
+Computing Class Frequencies: 100%|██████████| 372/372 [38:57<00:00,  6.28s/it]
+Class Frequencies: [0.10756825 0.32920191 0.05440517 0.20442969 0.0058648  0.00783859
+ 0.01110949 0.00184233 0.00490152 0.14157578 0.01028896 0.03579445
+ 0.01084    0.00120617 0.06207226 0.00236596 0.00207926 0.00206316
+ 0.00087622 0.00367605]
+Relative Weights: [3.02845009e-01 3.02845009e+00 1.80488559e+01 4.86784559e+00
+ 1.45670691e+02 1.13140202e+02 8.25798897e+01 3.51824250e+02
+ 1.69447929e+02 7.01381404e+00 8.85821560e+01 2.71780123e+01
+ 8.44594947e+01 4.53274208e+02 1.58548315e+01 2.97092187e+02
+ 3.24753615e+02 3.26460246e+02 5.32985463e+02 2.13855711e+02]
+
